@@ -1,0 +1,326 @@
+{
+  "info": {
+    "_postman_id": "c4993942-2877-48cf-9375-7e168465db0c",
+    "name": "BloqIT API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "6049012"
+  },
+  "item": [
+    {
+      "name": "Bloq",
+      "item": [
+        {
+          "name": "Find All",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/bloq",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "bloq"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Find By Id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/bloq/:id",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "bloq",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "484e01be-1570-4ac1-a2a9-02aad3acc54e"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Glicinias Plaza\",\n    \"address\": \"R. Dom Manuel Barbuda e Vasconcelos, 3810-498 Aveiro, Portugal\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/bloq",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "bloq"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Edit",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Locker",
+      "item": [
+        {
+          "name": "Find All",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/locker",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "locker"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"bloqId\": \"cbeb388e-aef2-49dd-9e0a-345fc10922c5\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/locker",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "locker"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Find By Id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/locker/:id",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "locker",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "258fd61a-8104-473f-809f-422aa62a3419"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Edit Status",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"status\": \"CLOSED\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/locker/:id",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "locker",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "68caa124-f672-40aa-9cf1-a5b7cd7227aa"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Rent",
+      "item": [
+        {
+          "name": "Find All",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"bloqId\": \"cbeb388e-aef2-49dd-9e0a-345fc10922c5\"\n}"
+            },
+            "url": {
+              "raw": "localhost:3000/rent",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "rent"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Find By Id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/rent/:id",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "rent",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "50be06a8-1dec-4b18-a23c-e98588207752"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"lockerId\": \"7c2746ba-ef27-4dd7-b165-2a4edb8b06ed\",\n    \"weight\": 6,\n    \"size\": \"L\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/rent",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "rent"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Edit Status",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"status\": \"DELIVERED\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/rent/:id",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "rent",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "a6d68110-cf6d-49db-90e1-0049c3d38056"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
