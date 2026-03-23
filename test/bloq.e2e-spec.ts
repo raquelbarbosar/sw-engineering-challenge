@@ -11,7 +11,7 @@ import { UpdateBloqDto } from '../src/bloq/dto/update-bloq.dto';
 
 let app: INestApplication;
 let repository: Repository<Bloq>;
-let bloqId: string = null;
+let bloqId: string;
 
 beforeAll(async () => {
   const module = await Test.createTestingModule({
