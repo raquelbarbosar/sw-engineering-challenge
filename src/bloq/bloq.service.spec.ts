@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/unbound-method */
 import { Test, TestingModule } from '@nestjs/testing';
 import { BloqService } from './bloq.service';
@@ -7,6 +8,7 @@ import { Bloq } from './entities/bloq.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { CreateBloqDto } from './dto/create-bloq.dto';
 import { UpdateBloqDto } from './dto/update-bloq.dto';
+import { BadRequestException, NotFoundException } from '@nestjs/common';
 
 describe('BloqService', () => {
   let service: BloqService;
@@ -57,8 +59,19 @@ describe('BloqService', () => {
       expect(repository.save).toHaveBeenCalledTimes(1);
     });
 
-    it('BadRequestException', () => {
-      expect(service).toBeDefined();
+    it('BadRequestException', async () => {
+      const bloqDTO = {
+        title: 'Luitton Vouis Champs Elysées',
+        address: '101 Av. des Champs-Élysées, 75008 Paris, France',
+      } as CreateBloqDto;
+
+      jest
+        .spyOn(repository, 'save')
+        .mockRejectedValue(new BadRequestException('query error'));
+
+      await expect(service.create(bloqDTO)).rejects.toThrow(
+        BadRequestException,
+      );
     });
   });
 
@@ -85,8 +98,12 @@ describe('BloqService', () => {
       expect(repository.find).toHaveBeenCalledTimes(1);
     });
 
-    it('BadRequestException', () => {
-      expect(service).toBeDefined();
+    it('NotFoundException', async () => {
+      jest
+        .spyOn(repository, 'find')
+        .mockRejectedValue(new NotFoundException('query error'));
+
+      await expect(service.findAll()).rejects.toThrow(NotFoundException);
     });
   });
 
@@ -107,8 +124,12 @@ describe('BloqService', () => {
       expect(repository.findOneBy).toHaveBeenCalledTimes(1);
     });
 
-    it('BadRequestException', () => {
-      expect(service).toBeDefined();
+    it('NotFoundException', async () => {
+      const id: string = 'c3ee858c-f3d8-45a3-803d-e080649bbb6f';
+
+      jest.spyOn(repository, 'findOneBy').mockResolvedValue(null);
+
+      await expect(service.findOne(id)).rejects.toThrow(NotFoundException);
     });
   });
 
@@ -143,8 +164,16 @@ describe('BloqService', () => {
       expect(service.findOne).toHaveBeenCalledTimes(1);
     });
 
-    it('BadRequestException', () => {
-      expect(service).toBeDefined();
+    it('BadRequestException', async () => {
+      const id: string = 'c468152c-b875-45ed-add7-d2ddf023042c';
+      const bloqUpdateDTO = {
+        title: 'Glicinias Plazassss',
+        address: 'R. Dom Manuel Barbuda e Vasconcelos, 3810-498 Aveiro, Italia',
+      } as UpdateBloqDto;
+
+      await expect(service.update(id, bloqUpdateDTO)).rejects.toThrow(
+        BadRequestException,
+      );
     });
   });
 
@@ -176,8 +205,9 @@ describe('BloqService', () => {
       expect(service.findOne).toHaveBeenCalledTimes(1);
     });
 
-    it('BadRequestException', () => {
-      expect(service).toBeDefined();
+    it('BadRequestException', async () => {
+      const id: string = 'c468152c-b875-45ed-add7-d2ddf023042c';
+      await expect(service.delete(id)).rejects.toThrow(BadRequestException);
     });
   });
 });

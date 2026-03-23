@@ -76,8 +76,8 @@ describe('RentController', () => {
         id: '50be06a8-1dec-4b18-a23c-e98588207752',
         lockerId: null,
         weight: 5,
-        size: 'M',
-        status: 'CREATED',
+        size: RENT_SIZE.M,
+        status: RENT_STATUS.CREATED,
         createdAt: '2026-03-20T17:41:03.021Z',
         droppedOffAt: null,
         pickedUpAt: null,
@@ -86,8 +86,8 @@ describe('RentController', () => {
         id: '46f1b2a6-4e02-44e8-bfbf-3b031fbfb5b8',
         lockerId: '68caa124-f672-40aa-9cf1-a5b7cd7227aa',
         weight: 3,
-        size: 'G',
-        status: 'CREATED',
+        size: RENT_SIZE.L,
+        status: RENT_STATUS.CREATED,
         createdAt: null,
         droppedOffAt: null,
         pickedUpAt: null,
@@ -104,16 +104,16 @@ describe('RentController', () => {
 
   it('should get a specific rent', async () => {
     const id: string = '50be06a8-1dec-4b18-a23c-e98588207752';
-    const rentReturned = {
+    const rentReturned: Rent = {
       id: '50be06a8-1dec-4b18-a23c-e98588207752',
       lockerId: null,
       weight: 5,
-      size: 'M',
-      status: 'CREATED',
+      size: RENT_SIZE.M,
+      status: RENT_STATUS.CREATED,
       createdAt: '2026-03-20T17:41:03.021Z',
       droppedOffAt: null,
       pickedUpAt: null,
-    } as Rent;
+    };
 
     jest.spyOn(service, 'findOne').mockResolvedValue(rentReturned);
 
@@ -132,9 +132,9 @@ describe('RentController', () => {
       pickedUpAt: new Date(),
     };
 
-    const rentUpdateDTO = {
+    const rentUpdateDTO: UpdateRentDto = {
       status: RENT_STATUS.DELIVERED,
-    } as UpdateRentDto;
+    };
 
     jest.spyOn(service, 'updateStatus').mockResolvedValue(rentUpdated);
 
